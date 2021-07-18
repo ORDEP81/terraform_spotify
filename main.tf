@@ -22,16 +22,24 @@ resource "spotify_playlist" "playlist" {
 
   tracks = [
     data.spotify_search_track.by_artist.tracks[0].id,
-    data.spotify_search_track.by_artist.tracks[1].id,
-    data.spotify_search_track.by_artist.tracks[2].id,
+    data.spotify_track.road_url.id,
+    data.spotify_track.stranger_url.id,
   ]
 }
 
 data "spotify_search_track" "by_artist" {
-  artists = ["Dolly Parton"]
-  #  album = "Jolene"
-  #  name  = "Early Morning Breeze"
+  artists = ["Ben Böhmer"]
+  name  = "Beyond Beliefs"
 }
+
+data "spotify_track" "road_url" {
+  url = "https://open.spotify.com/track/6kckNpuM5oXZrObLExRg6d?si=11349edbe05e4f98"
+}
+
+data "spotify_track" "stranger_url" {
+  url = "https://open.spotify.com/track/3z3EmPMVgbMABeB43DzwZq?si=938b2f8ed6ed477f"
+}
+
 
 output "tracks" {
   value = data.spotify_search_track.by_artist.tracks
